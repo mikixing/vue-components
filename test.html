@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+#svg rect {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+  stroke: #666;
+  stroke-width: 1em;
+}
+#svg #bar {
+  stroke: #FF9F1E;
+}
+    </style>
+</head>
+<body>
+    <div>
+        <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="50" r="40" stroke="#ebeef5" fill="none"
+          stroke-width="5" />
+          <circle id="circle cx="100" cy="50" r="40" stroke="#409eff" fill="none" stroke-linecap='round'
+          stroke-width="5" />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <g fill='none' stroke='black' stroke-width='10'>
+              <path stroke-linecap='round' d='M5 40 l215 0' stroke='#ebeef5'/>
+              <path id="progress" stroke-linecap='round' d='M5 40 l0 0' stroke='red'/>
+          </g>
+       </svg> 
+    </div>
+    <input type="text" id="input"> 
+    <script>
+      var input = document.getElementById('input')
+      var l = 215
+      var num = 0
+      var progress = document.getElementById('progress')
+      // console.log(window.progress = progress)
+      setInterval(function () {
+        if (num > 215) {
+          num = 0
+        }
+        num++
+        progress.setAttribute('d', 'M5 40 l' + num + ' 0')
+      }, 10)
+
+      var val = 0
+      var circle = document.getElementById('circle')
+      circle.setAttribute('strokeDasharray')
+      setInterval(function () {
+        if (val > 100) { 
+          val = 0
+        }
+        val++
+        var c = Math.PI*(r*2);
+        var pct = ((100-val)/100)*c;
+        var r = circle.attr('r');
+        circle.css({ strokeDashoffset: pct});
+      }, 10)
+    </script>
+  </body>
+</html>
