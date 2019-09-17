@@ -1,10 +1,12 @@
 <template>
-    <div class="mk-progress">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-            <circle cx="50%" cy="50%" r="40" stroke="#ebeef5" fill="none" stroke-width="5" />
-            <circle ref="circle" cx="50%" cy="50%" r="40" stroke="#409eff" fill="none" stroke-linecap='round' 
-            stroke-width="5" />
-        </svg>
+    <div>
+        <div class="mk-progress">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <circle cx="50%" cy="50%" r="40" stroke="#ebeef5" fill="none" stroke-width="5" />
+                <circle ref="circle" cx="50%" cy="50%" r="40" stroke="#409eff" fill="none" stroke-linecap='round' 
+                stroke-width="5" />
+            </svg>
+        </div>
         <mk-shade></mk-shade>
     </div>
 </template>
@@ -59,5 +61,6 @@
         transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
+        z-index: 2;
     }
 </style>

@@ -12,6 +12,9 @@
             imgSrc: {
                 type: String,
                 default: ''
+            },
+            percentage: {
+                default: 0
             }
         },
         mounted() {
@@ -20,7 +23,7 @@
                 ...mkProgress
             })
             progressInstance.$mount()
-            progressInstance.percentage = '50%'
+            progressInstance.percentage = this.percentage
             this.$refs.imgBox.appendChild(progressInstance.$el)
         }
     }

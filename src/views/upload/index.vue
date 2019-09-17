@@ -25,18 +25,31 @@
                 const file = e.target.files[0]
                 let reader = new FileReader()
                 reader.readAsDataURL(file)
+                const imgBoxInstance = new Vue({
+                    ...imgBox
+                })
+                imgBoxInstance.$mount()
                 reader.onload = e => {
                     // 显示预览图
-                    const imgBoxInstance = new Vue({
-                        ...imgBox
-                    })
                     imgBoxInstance.imgSrc = e.target.result
-                    imgBoxInstance.$mount()
                     this.$refs.imgWrap.appendChild(imgBoxInstance.$el)
                 }
+                let fd = new FormData()
+                fd.append('file', file)
+                this.ajax({
+                    data: fd,
+                    url: 'http://localhost:8055/upload',
+                    method: 'post',
+                    onUploadProgress: function (progressEvent) {
+                        let percentage = progressEvent.loaded / progressEvent.total
+                        console.log(progressEvent)
+                        imgBoxInstance.percentage = percentage
+                    },
+                })
             }
         },
         mounted() {
+            console.log(this.ajax)
         }
     }
 </script>
