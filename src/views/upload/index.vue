@@ -1,17 +1,15 @@
 <template>
-    <div class="mk-upload-box">
+    <div class="mk-upload-box" ref="box">
         <div class="mk-upload-img" ref="imgWrap"></div>
         <div class="mk-upload" @click="doClick" :class="{'mk-upload-active': isActive}" ref="upload">
             <span><i class="icon-plus icon-plus-fixed"></i></span>
             <input type="file" class="mk-upload-input" ref="input" @change="change($event)">
         </div>
-        <progress></progress>
     </div>
 </template>
 <script>
     import Vue from 'vue'
     import imgBox from './imgBox.vue'
-    import progress from './progress.vue'
     export default {
         name: 'mk-upload',
         data() {
@@ -28,23 +26,17 @@
                 let reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = e => {
-                    // alert(e.target.result)
-                    const instance = new Vue({
+                    // 显示预览图
+                    const imgBoxInstance = new Vue({
                         ...imgBox
                     })
-                    instance.imgSrc = e.target.result
-                    instance.$mount()
-                    console.log(instance.$el)
-                    this.$refs.imgWrap.appendChild(instance.$el)
-                    console.log(instance)
+                    imgBoxInstance.imgSrc = e.target.result
+                    imgBoxInstance.$mount()
+                    this.$refs.imgWrap.appendChild(imgBoxInstance.$el)
                 }
             }
         },
-        components: {
-            progress
-        },
         mounted() {
-
         }
     }
 </script>

@@ -1,9 +1,11 @@
 <template>
-    <div class="img-box">
+    <div class="img-box" ref="imgBox">
         <img :src="imgSrc" alt="" class="img-box-img">
     </div>
 </template>
 <script>
+    import Vue from 'vue'
+    import mkProgress from './progress.vue'
     export default {
         name: 'img-box',
         props: {
@@ -12,18 +14,14 @@
                 default: ''
             }
         },
-        data() {
-            return {
-                showBox: false
-            }
-        },
-        methods: {
-            show() {
-                this.showBox = true
-            },
-            hide() {
-                this.showBox = false
-            }
+        mounted() {
+            // 显示进度条
+            const progressInstance = new Vue({
+                ...mkProgress
+            })
+            progressInstance.$mount()
+            progressInstance.percentage = '50%'
+            this.$refs.imgBox.appendChild(progressInstance.$el)
         }
     }
 </script>
@@ -39,6 +37,7 @@
         box-sizing: border-box;
         display: inline-block;
         margin-right: 8px;
+        position: relative;
     }
     .img-box-img {
         width: 100%;
