@@ -1,12 +1,11 @@
 <template>
-    <div class="upload-finish" v-if="isShow">
+    <mk-shade ref="mkShade">
         <div class="operate">
             <i class="icon-zoom-in icon-box" @click="getOriginImg"></i>
             <i class="icon-download3 icon-box" @click="download"></i>
             <i class="icon-bin icon-box" @click="goTrash" ></i>
         </div>
-        <mk-shade></mk-shade>
-    </div>
+    </mk-shade>
 </template>
 <script>
     import Vue from 'vue'
@@ -40,14 +39,13 @@
 
             },
             goTrash() {
-                console.log(this, 'uploadFinish')
                 this.$parent.$emit('trash')
             },
             show() {
-               this.isShow = true
+               this.$refs.mkShade.show()
             },
             hide() {
-                this.isShow = false
+                this.$refs.mkShade.hide()
             }
         }
     }

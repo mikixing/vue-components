@@ -1,5 +1,9 @@
 <template>
-    <div class="mk-shade" :class="{active: isShow}"></div>
+    <transition name="fade">
+        <div class="mk-shade fade" v-if="isShow">
+            <slot></slot>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -26,17 +30,23 @@
     }
 </script>
 
-<style>
-    .mk-shade {
+<style lang="postcss" scoped>
+    .fade {
         position: absolute;
         top: 0;
         background: rgba(0, 0, 0, .5);
         width: 100%;
         height: 100%;
-        opacity: 0;
-    }
-    .active {
         opacity: 1;
-        transition: opacity 3s;
+        transition: .3s;
+    }
+    .fade-bofore-enter {
+        opacity: 1;
+    }
+    .fade-bofore-enter-active {
+        transition: all .3s;
+    }
+    .fade-bofore-leave {
+        opacity: 0;
     }
 </style>
