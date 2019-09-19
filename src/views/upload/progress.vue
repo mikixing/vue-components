@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div v-if="isShow">
         <div class="mk-progress">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                 <circle cx="50%" cy="50%" r="40" stroke="#ebeef5" fill="none" stroke-width="5" />
-                <circle ref="circle" cx="50%" cy="50%" r="40" stroke="#409eff" fill="none" stroke-linecap='round' 
+                <circle class="mk-progress-circle" ref="circle" cx="50%" cy="50%" r="40" stroke="#409eff" fill="none" stroke-linecap='round' 
                 stroke-width="5" />
             </svg>
         </div>
@@ -23,7 +23,8 @@
         data() {
             return {
                 circleProgress: '0%',
-                radian: 0 // 弧度
+                radian: 0, // 弧度
+                isShow: true
             }
         },
         watch: {
@@ -44,11 +45,20 @@
         components: {
             mkShade
         },
+        methods: {
+            show() {
+                this.isShow = true
+            },
+            hide() {
+                this.isShow = false
+            }
+        },
         mounted() {
             const circle = this.$refs.circle
             const r = circle.getAttribute('r');
             this.radian = Math.PI * (r * 2);
             circle.setAttribute('stroke-dasharray', this.radian)
+            circle.setAttribute('stroke-dashoffset', this.radian)
         }
     }
 </script>
@@ -62,5 +72,8 @@
         width: 100%;
         height: 100%;
         z-index: 2;
+    }
+    .mk-progress-circle {
+        transition: stroke-dashoffset 1s linear;
     }
 </style>

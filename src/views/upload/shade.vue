@@ -1,5 +1,5 @@
 <template>
-    <div class="mk-shade" v-if="isShow"></div>
+    <div class="mk-shade" :class="{active: isShow}"></div>
 </template>
 
 <script>
@@ -19,7 +19,7 @@
             show() {
                 this.isShow = true
             },
-            close() {
+            hide() {
                 this.isShow = false
             }
         }   
@@ -33,5 +33,10 @@
         background: rgba(0, 0, 0, .5);
         width: 100%;
         height: 100%;
+        opacity: 0;
+    }
+    .active {
+        opacity: 1;
+        transition: opacity 3s;
     }
 </style>

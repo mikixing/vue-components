@@ -36,15 +36,34 @@
                 }
                 let fd = new FormData()
                 fd.append('file', file)
+                let token
                 this.ajax({
-                    data: fd,
-                    url: 'http://localhost:8055/upload',
-                    method: 'post',
-                    onUploadProgress: function (progressEvent) {
-                        let percentage = progressEvent.loaded / progressEvent.total
-                        console.log(progressEvent)
-                        imgBoxInstance.percentage = percentage
-                    },
+                    url: 'http://localhost:8888/upload/token',
+                    method: 'get',
+                }).then(res => {
+                    token = res.data.data.token
+                    fd.append('token', token)
+                    this.ajax({
+                        url: 'http://up-z2.qiniup.com',
+                        method: 'post',
+                        data: fd,
+                        contentType:false,  //一定要加contentType:false,processData:false,否则报错
+                        processData:false,
+                        success: function (res) {
+                            console.log('上传成功')
+                        },
+                        error: function (e) {
+                            alert('上传出错!')
+                        },
+                        onUploadProgress: function (progressEvent) {
+                            let percentage = progressEvent.loaded / progressEvent.total
+                            imgBoxInstance.percentage = percentage
+                            if (+percentage === 1) {
+                                imgBoxInstance.hideProgress()
+                                imgBoxInstance.mountUploadFinish()
+                            }
+                        },
+                    })
                 })
             }
         },

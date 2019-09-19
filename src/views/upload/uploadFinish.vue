@@ -1,5 +1,5 @@
 <template>
-    <div class="upload-finish">
+    <div class="upload-finish" v-if="isShow">
         <div class="operate">
             <i class="icon-zoom-in icon-box" @click="getOriginImg"></i>
             <i class="icon-download3 icon-box" @click="download"></i>
@@ -19,6 +19,11 @@
                 default: ''
             }
         },
+        data() {
+            return {
+                isShow: true
+            }
+        },
         components: {
             mkShade
         },
@@ -35,7 +40,14 @@
 
             },
             goTrash() {
-                this.$emit('trash')
+                console.log(this, 'uploadFinish')
+                this.$parent.$emit('trash')
+            },
+            show() {
+               this.isShow = true
+            },
+            hide() {
+                this.isShow = false
             }
         }
     }
@@ -56,5 +68,6 @@
         line-height: 40px;
         font-size: 24px;
         color: #ffffff;
+        cursor: pointer;
     }
 </style>
