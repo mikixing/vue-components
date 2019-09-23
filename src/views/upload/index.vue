@@ -2,7 +2,7 @@
     <div class="mk-upload-box" ref="box">
         <div class="mk-upload-img" ref="imgWrap"></div>
         <div class="mk-upload" @click="doClick" :class="{'mk-upload-active': isActive}" ref="upload">
-            <span><i class="icon-plus icon-plus-fixed"></i></span>
+            <span><i class="iconfont icon-plus icon-plus-fixed"></i></span>
             <input type="file" class="mk-upload-input" ref="input" @change="change($event)">
         </div>
     </div>
@@ -33,6 +33,7 @@
                     // 显示预览图
                     imgBoxInstance.imgSrc = e.target.result
                     this.$refs.imgWrap.appendChild(imgBoxInstance.$el)
+                    imgBoxInstance.showProgress()
                 }
                 let fd = new FormData()
                 fd.append('file', file)
@@ -66,9 +67,6 @@
                     })
                 })
             }
-        },
-        mounted() {
-            console.log(this.ajax)
         }
     }
 </script>

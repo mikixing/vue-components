@@ -1,0 +1,44 @@
+{
+  "id": "1430634",
+  "name": "vue-component",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "392028",
+      "name": "PLUS",
+      "font_class": "plus",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "586864",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e712",
+      "unicode_decimal": 59154
+    },
+    {
+      "icon_id": "3535421",
+      "name": "APPhome-Magnifier",
+      "font_class": "magnifier",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "5428534",
+      "name": "spinner",
+      "font_class": "spinner",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
+      "icon_id": "10139883",
+      "name": "bin-2",
+      "font_class": "bin",
+      "unicode": "e698",
+      "unicode_decimal": 59032
+    }
+  ]
+}

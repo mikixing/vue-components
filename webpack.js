@@ -1,6 +1,6 @@
 {
   mode: 'development',
-  context: '/Users/xingxiaoqi/Documents/project/vue-components',
+  context: '/Users/xingxiaoqi/Documents/project/pingan/vue-components',
   devtool: 'cheap-module-eval-source-map',
   node: {
     setImmediate: false,
@@ -11,14 +11,14 @@
     child_process: 'empty'
   },
   output: {
-    path: '/Users/xingxiaoqi/Documents/project/vue-components/dist',
+    path: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/dist',
     filename: '[name].js',
     publicPath: '/',
     globalObject: '(typeof self !== \'undefined\' ? self : this)'
   },
   resolve: {
     alias: {
-      '@': '/Users/xingxiaoqi/Documents/project/vue-components/src',
+      '@': '/Users/xingxiaoqi/Documents/project/pingan/vue-components/src',
       vue$: 'vue/dist/vue.runtime.esm.js'
     },
     extensions: [
@@ -31,17 +31,17 @@
     ],
     modules: [
       'node_modules',
-      '/Users/xingxiaoqi/Documents/project/vue-components/node_modules',
-      '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/@vue/cli-service/node_modules'
+      '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules',
+      '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/@vue/cli-service/node_modules'
     ]
   },
   resolveLoader: {
     modules: [
-      '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/@vue/cli-plugin-eslint/node_modules',
-      '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/@vue/cli-plugin-babel/node_modules',
+      '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/@vue/cli-plugin-eslint/node_modules',
+      '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/@vue/cli-plugin-babel/node_modules',
       'node_modules',
-      '/Users/xingxiaoqi/Documents/project/vue-components/node_modules',
-      '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/@vue/cli-service/node_modules'
+      '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules',
+      '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/@vue/cli-service/node_modules'
     ]
   },
   module: {
@@ -55,7 +55,7 @@
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/.cache/vue-loader',
+              cacheDirectory: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/.cache/vue-loader',
               cacheIdentifier: '2c305ea6'
             }
           },
@@ -66,7 +66,7 @@
               compilerOptions: {
                 preserveWhitespace: false
               },
-              cacheDirectory: '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/.cache/vue-loader',
+              cacheDirectory: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/.cache/vue-loader',
               cacheIdentifier: '2c305ea6'
             }
           }
@@ -1052,7 +1052,7 @@
           {
             loader: 'cache-loader',
             options: {
-              cacheDirectory: '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/.cache/babel-loader',
+              cacheDirectory: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/.cache/babel-loader',
               cacheIdentifier: '84e568a2'
             }
           },
@@ -1068,7 +1068,7 @@
         test: /\.(vue|(j|t)sx?)$/,
         exclude: [
           /node_modules/,
-          '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/@vue/cli-service/lib'
+          '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/@vue/cli-service/lib'
         ],
         use: [
           /* config.module.rule('eslint').use('eslint-loader') */
@@ -1081,10 +1081,10 @@
                 '.vue'
               ],
               cache: true,
-              cacheIdentifier: '60922b70',
+              cacheIdentifier: '237ffa98',
               emitWarning: true,
               emitError: false,
-              eslintPath: '/Users/xingxiaoqi/Documents/project/vue-components/node_modules/eslint',
+              eslintPath: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/node_modules/eslint',
               formatter: function () { /* omitted long function */ }
             }
           }
@@ -1125,7 +1125,7 @@
     new HtmlWebpackPlugin(
       {
         templateParameters: function () { /* omitted long function */ },
-        template: '/Users/xingxiaoqi/Documents/project/vue-components/public/index.html'
+        template: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/public/index.html'
       }
     ),
     /* config.plugin('preload') */
@@ -1150,8 +1150,8 @@
     new CopyWebpackPlugin(
       [
         {
-          from: '/Users/xingxiaoqi/Documents/project/vue-components/public',
-          to: '/Users/xingxiaoqi/Documents/project/vue-components/dist',
+          from: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/public',
+          to: '/Users/xingxiaoqi/Documents/project/pingan/vue-components/dist',
           toType: 'dir',
           ignore: [
             '.DS_Store'

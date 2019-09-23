@@ -22,6 +22,35 @@ export default new Router({
             isSaveScroll: false,
         },
         component: () => import(/* webpackChunkName: "upload" */ '../views/upload/index.vue'),
+    }, {
+        path: '/test',
+        name: 'test',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "test" */ '../views/test/index.vue'),
+    },
+    {
+        path: '/matte',
+        name: 'matte',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "matte" */ '../views/matte/index.vue'),
+    },
+    {
+        path: '/message',
+        name: 'message',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "message" */ '../views/message/index.vue'),
     },
     {
         path: '/',

@@ -65,10 +65,10 @@
             // 上传遮罩
         },
         mounted() {
-            const tmp = Vue.extend({
+            this.progressInstance = new Vue({
                 ...mkProgress
             })
-            this.progressInstance = new tmp()
+            this.progressInstance.isShow = true
             this.progressInstance.$mount()
             this.progressInstance.percentage = this.percentage
             this.progressInstance.$parent = this

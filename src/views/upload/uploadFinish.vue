@@ -1,9 +1,9 @@
 <template>
-    <mk-shade ref="mkShade">
+    <mk-shade ref="shade">
         <div class="operate">
-            <i class="icon-zoom-in icon-box" @click="getOriginImg"></i>
-            <i class="icon-download3 icon-box" @click="download"></i>
-            <i class="icon-bin icon-box" @click="goTrash" ></i>
+            <i class="iconfont icon-magnifier icon-box" @click="getOriginImg"></i>
+            <i class="iconfont icon-download icon-box" @click="download"></i>
+            <i class="iconfont icon-bin icon-box" @click="goTrash" ></i>
         </div>
     </mk-shade>
 </template>
@@ -26,6 +26,11 @@
         components: {
             mkShade
         },
+        watch: {
+            isShow(val) {
+                this.$refs.shade.isShow = val
+            }
+        },
         methods: {
             getOriginImg() {
                 const lightBoxInstance = new Vue({
@@ -42,10 +47,10 @@
                 this.$parent.$emit('trash')
             },
             show() {
-               this.$refs.mkShade.show()
+               this.$refs.shade.show()
             },
             hide() {
-                this.$refs.mkShade.hide()
+                this.$refs.shade.hide()
             }
         }
     }
