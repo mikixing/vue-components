@@ -40,6 +40,7 @@
                         this.$refs.message.style.top = top + 'px'
                         zIndex++
                         top += 64
+
                         // this.timer = setTimeout(_ => {
                         //     clearTimeout(this.timer)
                         //     this.$el.remove()
@@ -48,12 +49,6 @@
                     })
                 }
             }
-        },
-        mounted() {
-            // this.$refs.message.style.zIndex = zIndex
-            // this.$refs.message.style.top = top + 'px'
-            // zIndex++
-            // top += 64
         }
     }
 </script>
@@ -73,9 +68,9 @@
         transform: translateX(-50%);
     }
     .ease-enter, .ease-leave-to {
-        top: 0 !important;
+        transform: translate(-50%, -100%) !important;
     }
     .ease-enter-active, .ease-leave-active {
-        transition: ease-in-out 300s;
+        transition: ease-in-out .3s;
     }
 </style>

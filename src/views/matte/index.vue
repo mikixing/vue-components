@@ -101,8 +101,3 @@ export default {
         animation: spin linear 2s infinite;
     }
 </style>
-<style lang="postcss" module>
-    .mk-matte {
-        background: red;
-    }
-</style>

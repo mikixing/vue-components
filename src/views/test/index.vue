@@ -41,8 +41,8 @@
                 const instance = new Vue({
                     ...message
                 })
-                instance.isShow = true
                 instance.$mount()
+                instance.isShow = true
                 this.$refs.message.appendChild(instance.$el)
             }, 1000)
         }
