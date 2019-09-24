@@ -57,7 +57,8 @@ export default {
             } else {
                 this.$message({
                     duration: 0,
-                    message: ''
+                    message: '1',
+                    type: 'warning'
                 })
             }
         }, 1000)

@@ -43,7 +43,9 @@
                 })
                 instance.$mount()
                 instance.isShow = true
-                instance.text = n
+                instance.text = n + '我们的祖国是花园,花园里的花朵真美丽,哇哈哈呀哇哈哈,我们的祖国真美丽,花园里的花朵真美丽'
+                instance.type = 'warn'
+                instance.onClose = () => alert('close')
                 this.$refs.message.appendChild(instance.$el)
             }, 1000)
         }
