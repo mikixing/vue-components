@@ -49,9 +49,17 @@ export default {
             if (n > 10) {
                 clearInterval(this.timer)
             }
-            this.$message({
-                duration: 0
-            })
+            if (n === 3) {
+                this.$message({
+                    duration: 10000,
+                    message: ''
+                })
+            } else {
+                this.$message({
+                    duration: 0,
+                    message: ''
+                })
+            }
         }, 1000)
     }
 }

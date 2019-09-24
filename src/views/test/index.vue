@@ -43,6 +43,7 @@
                 })
                 instance.$mount()
                 instance.isShow = true
+                instance.text = n
                 this.$refs.message.appendChild(instance.$el)
             }, 1000)
         }
