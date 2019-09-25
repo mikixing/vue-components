@@ -57,8 +57,8 @@ export default {
             } else {
                 this.$message({
                     duration: 0,
-                    message: '1',
-                    type: 'warning'
+                    message: n + '我们的祖国是花园花园里的花朵真美丽哇哈哈哈呀哇哈哈哈我们的祖国真美丽,花园里的花朵真美丽我们的祖国是花园花园里的花朵真美丽哇哈哈哈呀哇哈哈哈我们的祖国真美丽,花园里的花朵真美丽',
+                    type: 'success'
                 })
             }
         }, 1000)
@@ -70,7 +70,6 @@ export default {
         from {
             transform: rotateZ(0deg);
         }
-
         to {
             transform: rotateZ(360deg);
         }

@@ -31,23 +31,11 @@
             shade
         },
         mounted() {
-            // this.$createMatte().show()
-            let n = 0
-            this.timer = setInterval(_ => {
-                n++
-                if (n > 3) {
-                    clearInterval(this.timer)
-                }
-                const instance = new Vue({
-                    ...message
-                })
-                instance.$mount()
-                instance.isShow = true
-                instance.text = n + '我们的祖国是花园,花园里的花朵真美丽,哇哈哈呀哇哈哈,我们的祖国真美丽,花园里的花朵真美丽'
-                instance.type = 'warn'
-                instance.onClose = () => alert('close')
-                this.$refs.message.appendChild(instance.$el)
-            }, 1000)
+            const instance = this.$createMkMessage({
+                type: 'success',
+                text: 'haha',
+                duration: 0
+            }).show()
         }
     }
 </script>

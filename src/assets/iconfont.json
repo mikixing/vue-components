@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "59346",
+      "name": "error",
+      "font_class": "error",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
       "icon_id": "392028",
       "name": "PLUS",
       "font_class": "plus",
@@ -34,11 +41,39 @@
       "unicode_decimal": 59161
     },
     {
+      "icon_id": "5466095",
+      "name": "warn",
+      "font_class": "warn",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "7275088",
+      "name": "Check 2 (Filled)",
+      "font_class": "check",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "8777495",
+      "name": "star_filled",
+      "font_class": "icon-test",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
       "icon_id": "10139883",
       "name": "bin-2",
       "font_class": "bin",
       "unicode": "e698",
       "unicode_decimal": 59032
+    },
+    {
+      "icon_id": "10147123",
+      "name": "info",
+      "font_class": "info",
+      "unicode": "e618",
+      "unicode_decimal": 58904
     }
   ]
 }
