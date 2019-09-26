@@ -36,6 +36,8 @@
                 text: 'haha',
                 duration: 0
             }).show()
+            const messageBox = this.$createMkMessageBox({
+            }).show()
         }
     }
 </script>

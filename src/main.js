@@ -6,6 +6,7 @@ import '@/assets/iconfont.css'
 import CreateAPI from 'vue-create-api'
 import Matte from './views/matte/index.vue'
 import Message from './views/message/index.vue'
+import MessageBox from './views/messageBox/index.vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
@@ -13,6 +14,7 @@ Vue.use(ElementUI);
 Vue.use(CreateAPI)
 Vue.createAPI(Matte, true)
 Vue.createAPI(Message, true)
+Vue.createAPI(MessageBox, true)
 Vue.prototype.ajax = axios
 Vue.config.productionTip = false
 

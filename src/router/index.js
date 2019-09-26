@@ -53,6 +53,26 @@ export default new Router({
         component: () => import(/* webpackChunkName: "message" */ '../views/message/index.vue'),
     },
     {
+        path: '/messageBox',
+        name: 'messageBox',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "messageBox" */ '../views/messageBox/index.vue'),
+    },
+    {
+        path: '/loading',
+        name: 'loading',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "loading" */ '../views/loading/index.vue'),
+    },
+    {
         path: '/',
         redirect: '/home',
         meta: {}, // TODO: haha

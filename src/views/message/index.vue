@@ -1,6 +1,6 @@
 <template>
     <transition name="ease">
-        <div class="mk-message" :class="type | classType" v-if="isShow" @click="hide" ref="message" >
+        <div class="mk-message" :class="type | classType" v-if="isShow" ref="message" >
             <div class="mk-message-des">
                 <span class="mk-message-icon"><i class="iconfont" :class="iconType"></i></span>
                 <div class="mk-message-text">
@@ -153,7 +153,7 @@
     }
     .ease-enter, .ease-leave-to {
         transform: translate(-50%, -100%);
-        opacity: 0;
+        /* opacity: 0; */
     }
     .ease-enter-active, .ease-leave-active {
         transition: ease-in-out .3s;
