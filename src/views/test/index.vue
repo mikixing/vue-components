@@ -1,7 +1,9 @@
 <template>
     <div>
         <test ref="test"></test>
-        <div @click="goShow">点击点击点击</div>
+        <div @click="goShow" class="btn">
+            <div class="btn__text">点击点击点击</div>
+        </div>
         <div class="wrap">
             <shade ref="shade"></shade>
         </div>
@@ -46,5 +48,13 @@
         width: 100px;
         height: 200px;
         position: relative;
+    }
+</style>
+<style lang="postcss" scoped>
+    .btn {
+        color: red;
+        &__text {
+            color: green;
+        }
     }
 </style>

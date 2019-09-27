@@ -76,7 +76,7 @@ export default {
         min-width: 380px;
         max-width: 580px;
         padding: 15px;
-        background: red;
+        background: #FFFFFF;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         border-bottom-left-radius: 5px;

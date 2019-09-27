@@ -1,5 +1,5 @@
 <template>
-    <transition name="ease">
+    <transition name="ease" :appear="appear">
         <div class="mk-message" :class="type | classType" v-if="isShow" ref="message" >
             <div class="mk-message-des">
                 <span class="mk-message-icon"><i class="iconfont" :class="iconType"></i></span>
@@ -37,7 +37,8 @@
         },
         data() {
             return {
-                isShow: false
+                isShow: true,
+                appear: true // 初始渲染使用过渡
             }
         },
         methods: {
