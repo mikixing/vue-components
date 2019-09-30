@@ -9,7 +9,7 @@
         </div>
         <div ref="message"></div>
         <mk-layout-row>
-            <mk-layout-col xs="8" sm="6" md="4" lg="3" xl="1">
+            <mk-layout-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
                 <div class="left-sec"></div>
             </mk-layout-col>
             <mk-layout-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">

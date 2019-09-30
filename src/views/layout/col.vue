@@ -35,6 +35,7 @@
                 res += this.lg ? ' mk-layout-col-lg__' + this.lg : ''
                 res += this.xl ? ' mk-layout-col-xl__' + this.xl : ''
                 res += this.span ? ' .mk-layout-col__' + this.span : ''
+                return res
             }
         }
     }
@@ -185,7 +186,7 @@
             width: 95.83%
         }
     }
-    @media screen and (768px < width <= 992px) {
+    @media screen and (min-width: 769px) and (max-width: 991px) {
         .mk-layout-col-sm__1 {
             width: 4.16%
         }
@@ -256,7 +257,7 @@
             width: 95.83%
         }
     }
-    @media screen and (992px < width <= 1200px) {
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
         .mk-layout-col-md__1 {
             width: 4.16%
         }
@@ -327,7 +328,7 @@
             width: 95.83%
         }
     }
-    @media screen and (1200px < width <= 1920px) {
+    @media screen and (min-width: 1200px) and (max-width: 1919px) {
         .mk-layout-col-lg__1 {
             width: 4.16%
         }
@@ -398,7 +399,7 @@
             width: 95.83%
         }
     }
-    @media screen and (min-width: 1920) {
+    @media screen and (min-width: 1920px) {
         .mk-layout-col-xl__1 {
             width: 4.16%
         }
