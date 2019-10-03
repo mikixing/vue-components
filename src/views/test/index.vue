@@ -22,6 +22,15 @@
             <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple"></div></el-col>
             <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple-light"></div></el-col>
         </el-row>
+        <el-container style="height: 500px; border: 1px solid #eee">
+            <!-- <el-header style="background-color: pink"></el-header> -->
+            <el-aside width="200px" style="height: 200px;background-color: green"></el-aside>
+            <el-main  style="width: 200px;background-color: red"></el-main>
+            <!-- <el-footer style="background-color: yellow"></el-footer> -->
+            <template v-slot:footer>
+                <div class="haha"></div>
+            </template>
+        </el-container>
     </div>
 </template>
 
@@ -51,13 +60,13 @@
             mkLayoutCol
         },
         mounted() {
-            const instance = this.$createMkMessage({
-                type: 'success',
-                text: 'haha',
-                duration: 0
-            }).show()
-            const messageBox = this.$createMkMessageBox({
-            }).show()
+            // const instance = this.$createMkMessage({
+            //     type: 'success',
+            //     text: 'haha',
+            //     duration: 0
+            // }).show()
+            // const messageBox = this.$createMkMessageBox({
+            // }).show()
         }
     }
 </script>
