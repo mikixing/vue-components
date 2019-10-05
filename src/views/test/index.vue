@@ -1,6 +1,6 @@
 <template>
     <div>
-        <test ref="test"></test>
+        <!-- <test ref="test"></test>
         <div @click="goShow" class="btn">
             <div class="btn__text">点击点击点击</div>
         </div>
@@ -21,20 +21,12 @@
             <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple-light"></div></el-col>
             <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple"></div></el-col>
             <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple-light"></div></el-col>
-        </el-row>
-        <el-container style="height: 500px; border: 1px solid #eee">
-            <!-- <el-header style="background-color: pink"></el-header> -->
-            <el-aside width="200px" style="height: 200px;background-color: green"></el-aside>
-            <el-main  style="width: 200px;background-color: red"></el-main>
-            <!-- <el-footer style="background-color: yellow"></el-footer> -->
-            <template v-slot:footer>
-                <div class="haha"></div>
-            </template>
-        </el-container>
-        <div class="calendar-box" ref="calendar">
+        </el-row> -->
+        <!-- <div class="calendar-box" ref="calendar">
             <div>{{calendar}}</div>
             <mk-calendar v-model="calendar"></mk-calendar>
-        </div>
+        </div> -->
+        <input type="text" v-model="inputValue" ref="input">
     </div>
 </template>
 
@@ -50,7 +42,8 @@
         data() {
             return {
                 show: true,
-                calendar: ''
+                calendar: '',
+                inputValue: 'hello'
             }
         },
         methods: {
@@ -74,7 +67,7 @@
             // }).show()
             // const messageBox = this.$createMkMessageBox({
             // }).show()
-            
+            console.log(this, this.$refs.input)
         }
     }
 </script>

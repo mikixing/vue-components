@@ -47,7 +47,7 @@
         },
         methods: {
             selectDay(val) {
-                this.$emit('input', val)
+                this.$emit('input', val) // 组件上运用v-model
             },
             goPre() {
                 if (this.month <= 1) {
@@ -147,7 +147,7 @@
                         })
                     }
                 }
-                this.timeArr = []
+                this.timeArr = [] // vue单向绑定机制,如果不重新复制timeArr,无法触发timeArr数据更新
                 for (let i = 0; i < tmpArr.length; i++) {
                     const item = tmpArr[i]
                     if (i % 7 === 0) {
