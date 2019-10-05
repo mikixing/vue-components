@@ -31,6 +31,10 @@
                 <div class="haha"></div>
             </template>
         </el-container>
+        <div class="calendar-box" ref="calendar">
+            <div>{{calendar}}</div>
+            <mk-calendar v-model="calendar"></mk-calendar>
+        </div>
     </div>
 </template>
 
@@ -41,10 +45,12 @@
     import message from '../message/index.vue'
     import mkLayoutRow from '../layout/row.vue'
     import mkLayoutCol from '../layout/col.vue'
+    import mkCalendar from '../calendar/index.vue'
     export default {
         data() {
             return {
-                show: true
+                show: true,
+                calendar: ''
             }
         },
         methods: {
@@ -57,7 +63,8 @@
             test,
             shade,
             mkLayoutRow,
-            mkLayoutCol
+            mkLayoutCol,
+            mkCalendar
         },
         mounted() {
             // const instance = this.$createMkMessage({
@@ -67,6 +74,7 @@
             // }).show()
             // const messageBox = this.$createMkMessageBox({
             // }).show()
+            
         }
     }
 </script>
@@ -105,5 +113,8 @@
         height: 20px;
         padding-left: 10px;
         padding-right: 10px;
+    }
+    .calendar-box {
+        width: 300px;
     }
 </style>

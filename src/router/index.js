@@ -73,6 +73,16 @@ export default new Router({
         component: () => import(/* webpackChunkName: "loading" */ '../views/loading/index.vue'),
     },
     {
+        path: '/calendar',
+        name: 'calendar',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "calendar" */ '../views/calendar/index.vue'),
+    },
+    {
         path: '/',
         redirect: '/home',
         meta: {}, // TODO: haha
