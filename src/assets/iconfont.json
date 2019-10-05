@@ -27,6 +27,13 @@
       "unicode_decimal": 59154
     },
     {
+      "icon_id": "2510172",
+      "name": "triangle-arrow-d",
+      "font_class": "triangle-arrow-d",
+      "unicode": "e785",
+      "unicode_decimal": 59269
+    },
+    {
       "icon_id": "3535421",
       "name": "APPhome-Magnifier",
       "font_class": "magnifier",

@@ -26,7 +26,11 @@
             <div>{{calendar}}</div>
             <mk-calendar v-model="calendar"></mk-calendar>
         </div> -->
-        <input type="text" v-model="inputValue" ref="input">
+        <input type="checkbox" v-model="checkbox[0]" >
+        <input type="checkbox" v-model="checkbox[1]" >
+        <input type="checkbox" v-model="checkbox[2]" >
+        <input type="checkbox" v-model="checkbox[3]" >
+        <input type="checkbox" v-model="checkbox[4]" >
     </div>
 </template>
 
@@ -43,7 +47,7 @@
             return {
                 show: true,
                 calendar: '',
-                inputValue: 'hello'
+                checkbox: [false, false, false, false, false]
             }
         },
         methods: {
@@ -58,6 +62,11 @@
             mkLayoutRow,
             mkLayoutCol,
             mkCalendar
+        },
+        watch: {
+            checkbox(val) {
+                console.log(val)
+            }
         },
         mounted() {
             // const instance = this.$createMkMessage({
