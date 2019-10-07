@@ -26,11 +26,7 @@
             <div>{{calendar}}</div>
             <mk-calendar v-model="calendar"></mk-calendar>
         </div> -->
-        <input type="checkbox" v-model="checkbox[0]" >
-        <input type="checkbox" v-model="checkbox[1]" >
-        <input type="checkbox" v-model="checkbox[2]" >
-        <input type="checkbox" v-model="checkbox[3]" >
-        <input type="checkbox" v-model="checkbox[4]" >
+        <mk-tree :data="treeList"></mk-tree>
     </div>
 </template>
 
@@ -42,12 +38,32 @@
     import mkLayoutRow from '../layout/row.vue'
     import mkLayoutCol from '../layout/col.vue'
     import mkCalendar from '../calendar/index.vue'
+    import mkTree from '../tree/index.vue'
     export default {
         data() {
             return {
                 show: true,
                 calendar: '',
-                checkbox: [false, false, false, false, false]
+                checkbox: [false, false, false, false, false],
+                treeList: [{
+                    label: '一级1',
+                    children: [{
+                        label: '二级1-1',
+                        children: [{
+                            label: '三级1-1-1'
+                        }]
+                    }, {
+                        label: '二级1-2',
+                    }]
+                }, {
+                    label: '一级2',
+                    children: [{
+                        label: '二级2-1',
+                        // children: [{
+                        //     label: '三级2-1-1'
+                        // }]
+                    }]
+                }]
             }
         },
         methods: {
@@ -61,7 +77,8 @@
             shade,
             mkLayoutRow,
             mkLayoutCol,
-            mkCalendar
+            mkCalendar,
+            mkTree
         },
         watch: {
             checkbox(val) {
