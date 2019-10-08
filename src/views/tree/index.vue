@@ -19,20 +19,32 @@
         props: {
             data: {
                 type: Array,
-                default: () => []
+                default: () => [],
             }
         },
         methods: {
+            findCls(e, cls) {
+                const arr = e.className.split(/\s+/)
+                const index = arr.indexOf(cls)
+                return index
+            },
+            rmCls(e, cls) {
+                console.log(e)
+                const arr = e.className.split(/\s+/)
+                const index = arr.indexOf(cls)
+                index > -1 && arr.splice(index, 1)
+                e.className = arr.join(' ')
+            },
+            addCls(e, cls) {
+                e.className += ' ' + cls.trim()
+            },
             fireActive(e) {
                 const parent = e.currentTarget.parentNode
-                const cls = parent.className
-                const arr = cls.split(/\s+/)
-                const index = arr.indexOf('is-active')
-                if (index > -1) {
-                    arr.splice(index, 1)
-                    parent.className = arr.join(' ')
+                if (this.findCls(parent, 'is-active') > -1 || this.findCls(parent, 'is-open') > -1 ) {
+                    this.rmCls(parent, 'is-active')
+                    this.rmCls(parent, 'is-open')
                 } else {
-                    parent.className += ' is-active'
+                    this.addCls(parent, 'is-active is-open')
                 }
             }
         }
@@ -68,20 +80,18 @@
         display: inline-block;
         vertical-align: middle;
     }
-    .mk-tree-node.is-active>.mk-tree-item {
+    .mk-tree-node:focus>.mk-tree-item {
         background: #f5f7fa;
     }
-    .mk-tree-node.is-active>.mk-tree-item>.mk-tree-item-bar>.mk-tree-item__icon {
+    .mk-tree-node.is-open>.mk-tree-item>.mk-tree-item-bar>.mk-tree-item__icon {
         transform: rotate(90deg);
     }
     .mk-tree-children {
-        height: 0;
         overflow: hidden;
         transition: .3s;
-        /* display: none; */
+        display: none;
     }
-    .mk-tree-node.is-active>.mk-tree-children {
+    .mk-tree-node.is-open>.mk-tree-children {
         display:  block;
-        height: auto;
     }
 </style>
