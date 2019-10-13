@@ -10,3 +10,9 @@
         margin-top: 50px;
     }
 </style>
+<script>
+    import test from '../test/index.vue'
+    console.log(test)
+    export default {
+    }
+</script>

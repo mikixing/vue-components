@@ -26,7 +26,11 @@
             <div>{{calendar}}</div>
             <mk-calendar v-model="calendar"></mk-calendar>
         </div> -->
-        <mk-tree :data="treeList"></mk-tree>
+        <input type="checkbox" value="haha" checked="" abc="abc1">
+        <mk-tree :data="treeList" :load="load" lazy="treeList.map(e => {
+            e*3
+        })" abc></mk-tree>
+        
     </div>
 </template>
 
@@ -70,6 +74,9 @@
             goShow() {
                 // this.$refs.test.show = !this.$refs.test.show
                 this.$refs.shade.isShow = !this.$refs.shade.isShow
+            },
+            load() {
+                console.log('haha')
             }
         },
         components: {
@@ -97,6 +104,10 @@
         }
     }
 </script>
+
+
+
+
 <style>
     .wrap {
         width: 100px;

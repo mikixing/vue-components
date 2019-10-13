@@ -1,15 +1,16 @@
 <template>
     <div class="mk-tree">
-        <div class="mk-tree-node" v-for="(item, i) in data" v-bind:key="i">
-            <div class="mk-tree-item" @click="fireActive">
+        <div class="mk-tree-node" v-for="(item, i) in data" v-bind:key="i" :tabindex="i" @click="lazy && load">
+            <div class="mk-tree-item" @click="fireActive" >
                 <div class="mk-tree-item-bar">
-                    <span class="mk-tree-item__icon"><i class="iconfont icon-triangle-arrow-d"></i></span>
+                    <span class="mk-tree-item__icon" v-if="item.children && item.children.length"><i class="iconfont icon-triangle-arrow-d"></i></span>
                     <span class="mk-tree-item__label">{{item.label}}</span>
                 </div>
             </div>
             <div class="mk-tree-children" v-if="item.children && item.children.length">
-                <mk-tree :data="item.children"></mk-tree>
+                <mk-tree :data="item.children" :load="load"></mk-tree>
             </div>
+            <slot name="tree"></slot>
         </div>
     </div>
 </template>
@@ -19,7 +20,15 @@
         props: {
             data: {
                 type: Array,
-                default: () => [],
+                default: _ => [],
+            },
+            load: {
+                type: Function,
+                default: _ => {}
+            },
+            lazy: {
+                type: Boolean | String,
+                default: false
             }
         },
         methods: {
@@ -47,6 +56,15 @@
                     this.addCls(parent, 'is-active is-open')
                 }
             }
+        },
+        mounted() {
+            // console.log(this.$el, this.$el.getAttribute('lazy'), this.load)
+            console.log(this, this.lazy === '', '+++')
+
+            if (this.lazy === '' || this.lazy) {
+                // ...
+            }
+
         }
     }
 </script>
@@ -63,22 +81,27 @@
     }
     .mk-tree-item-bar {
         cursor: pointer;
+        position: relative;
     }
     .mk-tree-item:hover {
         background: #f5f7fa;
     }
     .mk-tree-item__icon {
-        display: inline-block;
         width: 26px;
         height: 26px;
         text-align: center;
         vertical-align: middle;
         transition: .3s;
         color: #c0c4cc;
+        position: absolute;
     }
     .mk-tree-item__label {
         display: inline-block;
         vertical-align: middle;
+        text-indent: 26px;
+    }
+    .mk-tree-node {
+        outline: medium;
     }
     .mk-tree-node:focus>.mk-tree-item {
         background: #f5f7fa;
