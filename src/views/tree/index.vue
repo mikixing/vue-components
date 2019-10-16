@@ -1,6 +1,6 @@
 <template>
     <div class="mk-tree">
-        <div class="mk-tree-node" v-for="(item, i) in data" v-bind:key="i" :tabindex="i" @click="lazy && load">
+        <div class="mk-tree-node" v-for="(item, i) in data" v-bind:key="i" :tabindex="i">
             <div class="mk-tree-item" @click="fireActive" >
                 <div class="mk-tree-item-bar">
                     <span class="mk-tree-item__icon" v-if="item.children && item.children.length"><i class="iconfont icon-triangle-arrow-d"></i></span>
@@ -10,7 +10,6 @@
             <div class="mk-tree-children" v-if="item.children && item.children.length">
                 <mk-tree :data="item.children" :load="load"></mk-tree>
             </div>
-            <slot name="tree"></slot>
         </div>
     </div>
 </template>
@@ -24,11 +23,14 @@
             },
             load: {
                 type: Function,
-                default: _ => {}
+                default: _ => {
+                    console.log('lazy boy')
+                }
             },
-            lazy: {
-                type: Boolean | String,
-                default: false
+        },
+        data() {
+            return {
+                lazy: ''
             }
         },
         methods: {
@@ -54,21 +56,25 @@
                     this.rmCls(parent, 'is-open')
                 } else {
                     this.addCls(parent, 'is-active is-open')
+                    if (this.lazy) {
+                        this.load()
+                    }
                 }
             }
         },
         mounted() {
-            // console.log(this.$el, this.$el.getAttribute('lazy'), this.load)
-            console.log(this, this.lazy === '', '+++')
-
-            if (this.lazy === '' || this.lazy) {
-                // ...
+            if (this.$el.getAttribute('lazy') === '') {
+                this.lazy = true
             }
+            console.log('--->lazy', this.lazy)
 
         }
     }
 </script>
 <style lang="postcss">
+    * {
+        outline: none;
+    }
     .mk-tree {
         text-align: left;
     }

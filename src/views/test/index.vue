@@ -27,9 +27,7 @@
             <mk-calendar v-model="calendar"></mk-calendar>
         </div> -->
         <input type="checkbox" value="haha" checked="" abc="abc1">
-        <mk-tree :data="treeList" :load="load" lazy="treeList.map(e => {
-            e*3
-        })" abc></mk-tree>
+        <mk-tree :data="treeList" :load="load" lazy></mk-tree>
         
     </div>
 </template>
@@ -100,7 +98,7 @@
             // }).show()
             // const messageBox = this.$createMkMessageBox({
             // }).show()
-            console.log(this, this.$refs.input)
+            // console.log(this, this.$refs.input)
         }
     }
 </script>
