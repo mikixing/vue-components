@@ -4,11 +4,15 @@
             <div class="mk-tree-item" @click="fireActive" >
                 <div class="mk-tree-item-bar">
                     <span class="mk-tree-item__icon" v-if="item.children && item.children.length"><i class="iconfont icon-triangle-arrow-d"></i></span>
+                    <span class="mk-tree-item__icon" v-if="lazy"><i class="iconfont icon-spinner"></i></span>
                     <span class="mk-tree-item__label">{{item.label}}</span>
                 </div>
             </div>
-            <div class="mk-tree-children" v-if="item.children && item.children.length">
-                <mk-tree :data="item.children" :load="load"></mk-tree>
+            <div class="mk-tree-children" v-if="item.children && item.children.length && !lazy">
+                <mk-tree :data="item.children" ></mk-tree>
+            </div>
+            <div class="mk-tree-children" v-if="lazy">
+                <mk-tree :data="childrenData" :load="load" lazy abc="abc" def></mk-tree>
             </div>
         </div>
     </div>
@@ -26,11 +30,12 @@
                 default: _ => {
                     console.log('lazy boy')
                 }
-            },
+            }
         },
         data() {
             return {
-                lazy: ''
+                lazy: '',
+                childrenData: []
             }
         },
         methods: {
@@ -57,17 +62,32 @@
                 } else {
                     this.addCls(parent, 'is-active is-open')
                     if (this.lazy) {
-                        this.load()
+                        new Promise((r, j) => {
+                            this.load(e, r, j)
+                        }).then(val => {
+                            this.childrenData = val
+                        })
                     }
                 }
             }
         },
-        mounted() {
-            if (this.$el.getAttribute('lazy') === '') {
-                this.lazy = true
+        watch: {
+            childrenData() {
+                console.log('childrenData change')
             }
-            console.log('--->lazy', this.lazy)
-
+        },
+        mounted() {
+            this.$nextTick(_ => {
+                if (this.$el.getAttribute('lazy') === '') {
+                    this.lazy = true
+                }
+                if (this._uid === 4) {
+                    if (!this.$el.getAttribute('lazy')) {
+                        window.tree = this
+                        debugger
+                    }
+                }
+            })
         }
     }
 </script>
@@ -99,12 +119,11 @@
         vertical-align: middle;
         transition: .3s;
         color: #c0c4cc;
-        position: absolute;
     }
     .mk-tree-item__label {
         display: inline-block;
         vertical-align: middle;
-        text-indent: 26px;
+        margin-left: 8px;
     }
     .mk-tree-node {
         outline: medium;

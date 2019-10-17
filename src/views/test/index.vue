@@ -51,19 +51,6 @@
                     label: '一级1',
                     children: [{
                         label: '二级1-1',
-                        children: [{
-                            label: '三级1-1-1'
-                        }]
-                    }, {
-                        label: '二级1-2',
-                    }]
-                }, {
-                    label: '一级2',
-                    children: [{
-                        label: '二级2-1',
-                        // children: [{
-                        //     label: '三级2-1-1'
-                        // }]
                     }]
                 }]
             }
@@ -73,8 +60,14 @@
                 // this.$refs.test.show = !this.$refs.test.show
                 this.$refs.shade.isShow = !this.$refs.shade.isShow
             },
-            load() {
-                console.log('haha')
+            load(node, r, j) {
+                debugger
+                setTimeout(_ => {
+                    console.log('resolve')
+                    r([{
+                        label: '二级1-1'
+                    }])
+                }, 5000)
             }
         },
         components: {
