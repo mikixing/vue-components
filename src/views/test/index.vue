@@ -26,8 +26,8 @@
             <div>{{calendar}}</div>
             <mk-calendar v-model="calendar"></mk-calendar>
         </div> -->
-        <input type="checkbox" value="haha" checked="" abc="abc1">
-        <mk-tree :data="treeList" :load="load" lazy></mk-tree>
+        <!-- <input type="checkbox" value="haha" checked="" abc="abc1"> -->
+        <mk-tree :data="treeList" :load="load"></mk-tree>
         
     </div>
 </template>
@@ -44,13 +44,22 @@
     export default {
         data() {
             return {
+                n: 0,
                 show: true,
                 calendar: '',
                 checkbox: [false, false, false, false, false],
                 treeList: [{
                     label: '一级1',
                     children: [{
-                        label: '二级1-1',
+                        label: '二级2-1'
+                    }]
+                }, {
+                    label: '一级2',
+                    children: [{
+                        label: '二级2-2',
+                        children: [{
+                            label: '三级'
+                        }]
                     }]
                 }]
             }
@@ -61,13 +70,20 @@
                 this.$refs.shade.isShow = !this.$refs.shade.isShow
             },
             load(node, r, j) {
-                debugger
+                this.n++
                 setTimeout(_ => {
-                    console.log('resolve')
-                    r([{
-                        label: '二级1-1'
-                    }])
-                }, 5000)
+                    if (this.n === 3) {
+                      r([])  
+                    } else {
+                        r([{
+                            label: 'n级' + this.n,
+                            // children: [{
+                            //     label: '三级'
+                            // }]
+                        }])
+                    }
+                    
+                }, 2000)
             }
         },
         components: {
