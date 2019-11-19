@@ -6,8 +6,16 @@
     </div>
     <div class="miki-area-content">
       <div class="miki-area-bar"></div>
-      <div class="miki-area-list">
-        <div class="miki-area-column"></div>
+      <div class="miki-area-wrap">
+        <div class="miki-area-list" @mousedown="mousedown" @mousemove="mousemove">
+          <div class="miki-area-column">1</div>
+          <div class="miki-area-column">2</div>
+          <div class="miki-area-column">3</div>
+          <div class="miki-area-column">4</div>
+          <div class="miki-area-column">5</div>
+          <div class="miki-area-column">6</div>
+          <div class="miki-area-column">7</div>
+        </div>
       </div>
     </div>
   </div>
@@ -15,11 +23,26 @@
 <script>
   export default {
     name: 'miki-area',
+    data() {
+      return {
+        startX: 0,
+        startY: 0,
+      }
+    },
+    methods: {
+      mousedown(mouse) {
+        this.startX = mouse.clientX
+        this.startY = mouse.clientY
+      },
+      mousemove() {
+        console.log(2)
+      }
+    },
   }
 </script>
 <style lang="postcss">
   .miki-area {
-    width: 350px;
+    width: 250px;
     height: 400px;
     font-size: 12px;
   }
@@ -42,16 +65,31 @@
     padding-right: 15px;
   }
   .miki-area-content {
-    margin-top: 100px;
+    padding-top: 60px;
     position: relative;
+    height: 150px;
+    box-sizing: border-box;
   }
   .miki-area-bar {
-    height: 40px;
-    line-height: 40px;
+    box-sizing: border-box; 
+    height: 30px;
+    line-height: 30px;
     border-top: 1px solid #ebedf0;
     border-bottom: 1px solid #ebedf0;
   }
-  .miki-area-list {
+  .miki-area-wrap {
     position: absolute;
+    top: 0;
+    height: 150px;
+    overflow: hidden;
+  }
+  .miki-area-list {
+  }
+  .miki-area-column {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
   }
 </style>
