@@ -7,14 +7,14 @@
     <div class="miki-area-content">
       <div class="miki-area-bar"></div>
       <div class="miki-area-wrap">
-        <div class="miki-area-list" @mousedown="mousedown" @mousemove="mousemove">
-          <div class="miki-area-column">1</div>
-          <div class="miki-area-column">2</div>
-          <div class="miki-area-column">3</div>
-          <div class="miki-area-column">4</div>
-          <div class="miki-area-column">5</div>
-          <div class="miki-area-column">6</div>
-          <div class="miki-area-column">7</div>
+        <div class="miki-area-list" @touchstart="touchstart($event, $t)" @touchmove="touchmove($event)">
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">1</div>
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">2</div>
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">3</div>
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">4</div>
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">5</div>
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">6</div>
+          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">7</div>
         </div>
       </div>
     </div>
@@ -25,17 +25,18 @@
     name: 'miki-area',
     data() {
       return {
-        startX: 0,
         startY: 0,
       }
     },
     methods: {
-      mousedown(mouse) {
-        this.startX = mouse.clientX
-        this.startY = mouse.clientY
+      touchstart(e, $t) {
+        this.startY = e.touches[0].clientY
+        console.log(this.startY)
       },
-      mousemove() {
-        console.log(2)
+      touchmove(e, $t) {
+        let y = e.touches[0].clientY - this.startY
+        console.log(y, $t, 'move')
+        // target.style.top = y + 'px'
       }
     },
   }
@@ -65,7 +66,6 @@
     padding-right: 15px;
   }
   .miki-area-content {
-    padding-top: 60px;
     position: relative;
     height: 150px;
     box-sizing: border-box;
@@ -76,14 +76,19 @@
     line-height: 30px;
     border-top: 1px solid #ebedf0;
     border-bottom: 1px solid #ebedf0;
+    position: absolute;
+    width: 100%;
+    top: 60px;
   }
   .miki-area-wrap {
-    position: absolute;
-    top: 0;
     height: 150px;
     overflow: hidden;
+    position: relative;
   }
   .miki-area-list {
+    position: absolute;
+    height: 150px;
+    top: 60px;
   }
   .miki-area-column {
     padding-left: 10px;
