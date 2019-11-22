@@ -7,7 +7,7 @@
     <div class="miki-area-content">
       <div class="miki-area-bar"></div>
       <div class="miki-area-wrap">
-        <div class="miki-area-list" @touchstart="touchstart($event, $t)" @touchmove="touchmove($event)">
+        <div class="miki-area-list" ref="mikiAreaList" @touchstart="touchstart($event)" @touchmove="touchmove($event)">
           <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">1</div>
           <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">2</div>
           <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">3</div>
@@ -29,13 +29,15 @@
       }
     },
     methods: {
-      touchstart(e, $t) {
+      touchstart(e) {
         this.startY = e.touches[0].clientY
         console.log(this.startY)
       },
-      touchmove(e, $t) {
+      touchmove(e) {
         let y = e.touches[0].clientY - this.startY
-        console.log(y, $t, 'move')
+        let ele = this.$refs.mikiAreaList
+        ele.style.top = y + 'px'
+        console.log(e, y, 'move')
         // target.style.top = y + 'px'
       }
     },
@@ -44,8 +46,9 @@
 <style lang="postcss">
   .miki-area {
     width: 250px;
-    height: 400px;
+    height: 190px;
     font-size: 12px;
+    margin: auto;
   }
   .miki-area-btn {
     height: 40px;
@@ -56,6 +59,7 @@
     justify-content: space-between;
     color: #1989fa;
     font-size: 12px;
+    box-sizing: border-box;
   }
   .miki-area-btn__cancel {
     padding-left: 15px;
