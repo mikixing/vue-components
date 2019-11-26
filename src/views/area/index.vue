@@ -7,7 +7,7 @@
     <div class="miki-area-content">
       <div class="miki-area-bar"></div>
       <div class="miki-area-wrap">
-        <div class="miki-area-list" ref="mikiAreaList" @touchstart="touchstart($event)" @touchmove="touchmove($event)">
+        <div class="miki-area-list" ref="mikiAreaList" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchend($event)">
           <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">1</div>
           <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">2</div>
           <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">3</div>
@@ -26,19 +26,51 @@
     data() {
       return {
         startY: 0,
+        mouseStartY: 0,
+        dy: 0,
       }
     },
     methods: {
       touchstart(e) {
-        this.startY = e.touches[0].clientY
-        console.log(this.startY)
+        this.rmTransition(this.$refs.mikiAreaList)
+        this.mouseStartY = e.touches[0].clientY
+        this.startY = parseInt(getComputedStyle(this.$refs.mikiAreaList).top)
       },
       touchmove(e) {
-        let y = e.touches[0].clientY - this.startY
+        this.rmTransition(this.$refs.mikiAreaList)
+        let y = e.touches[0].clientY - this.mouseStartY
         let ele = this.$refs.mikiAreaList
-        ele.style.top = y + 'px'
-        console.log(e, y, 'move')
-        // target.style.top = y + 'px'
+        let dy = this.startY + y
+        let height = parseInt(getComputedStyle(this.$refs.mikiAreaList).height)
+        if (dy > 0) {
+          dy = dy > 90 ? 90 : dy
+        } else {
+          dy = -dy > height ? -height : dy
+        }
+        ele.style.top = dy + 'px'
+      },
+      touchend(e) {
+        let ele = this.$refs.mikiAreaList
+        ele.style.transitionDuration = '0.3s'
+        ele.style.transitionProperty = 'top'
+        ele.style.transitionTimingFunction = 'ease-in-out'
+        let top = parseInt(getComputedStyle(this.$refs.mikiAreaList).top)
+        let height = parseInt(getComputedStyle(this.$refs.mikiAreaList).height)
+        if (top <= 90 && top >= 0) {
+          ele.style.top = '60px'
+        } else if (top < 0) {
+          if (top <= -(height - 60)) {
+            ele.style.top = -(height - 30) + 'px'
+          }
+        }
+        ele.addEventListener('transitionend', _ => {
+          this.rmTransition(ele)
+        });
+      },
+      rmTransition(ele) {
+        ele.style.transitionDuration = ''
+        ele.style.transitionProperty = ''
+        ele.style.transitionTimingFunction = ''
       }
     },
   }
