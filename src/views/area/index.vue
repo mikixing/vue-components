@@ -7,27 +7,45 @@
     <div class="miki-area-content">
       <div class="miki-area-bar"></div>
       <div class="miki-area-wrap">
-        <div class="miki-area-list" ref="mikiAreaList" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchend($event)">
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">1</div>
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">2</div>
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">3</div>
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">4</div>
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">5</div>
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">6</div>
-          <div class="miki-area-column" onselectstart="return false" oncontextmenu="return false">7</div>
+        <div class="miki-area-inner" ref="mikiAreaInner" >
+          <div class="miki-area-list" ref="mikiAreaList" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchend($event)">
+            <div class="miki-area-column" v-for="(item, i) in areaList" :key="i" onselectstart="return false" oncontextmenu="return false">{{item.label}}</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+  const DAFAULT_COLUMN = [{
+    label: 1
+  }, {
+    label: 2
+  }, {
+    label: 3
+  }, {
+    label: 4
+  }, {
+    label: 5
+  }, {
+    label: 6
+  }, {
+    label: 7
+  }]
   export default {
     name: 'miki-area',
+    props: {
+      areaList: {
+        type: Array,
+        default: _ => DAFAULT_COLUMN
+      }
+    },
     data() {
       return {
         startY: 0,
         mouseStartY: 0,
         dy: 0,
+        baseHeiht: 0
       }
     },
     methods: {
@@ -58,9 +76,15 @@
         let height = parseInt(getComputedStyle(this.$refs.mikiAreaList).height)
         if (top <= 90 && top >= 0) {
           ele.style.top = '60px'
-        } else if (top < 0) {
-          if (top <= -(height - 60)) {
-            ele.style.top = -(height - 30) + 'px'
+        } else if (top <= -(height - 60)) {
+          ele.style.top = -(height - 90) + 'px'
+        } else {
+          const r = top % this.baseHeight
+          debugger
+          if ((r > 0 && r > this.baseHeight / 3) || (r < 0 && r < -this.baseHeight / 3)) {
+            r > 0 ? (ele.style.top = top + this.baseHeight + 'px') : (ele.style.top = top - this.baseHeight + 'px')
+          } else {
+            r > 0 ? (ele.style.top = top - r + 'px') : (ele.style.top = top - (this.baseHeiht - r) + 'px')
           }
         }
         ele.addEventListener('transitionend', _ => {
@@ -71,7 +95,10 @@
         ele.style.transitionDuration = ''
         ele.style.transitionProperty = ''
         ele.style.transitionTimingFunction = ''
-      }
+      },
+    },
+    mounted() {
+      this.baseHeight = parseInt(getComputedStyle(this.$refs.mikiAreaList).height) / this.areaList.length
     },
   }
 </script>
@@ -121,9 +148,12 @@
     overflow: hidden;
     position: relative;
   }
-  .miki-area-list {
+  .miki-area-inner {
     position: absolute;
     height: 150px;
+  }
+  .miki-area-list{
+    position: absolute;
     top: 60px;
   }
   .miki-area-column {
