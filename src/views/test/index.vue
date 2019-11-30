@@ -28,7 +28,11 @@
         </div> -->
         <!-- <input type="checkbox" value="haha" checked="" abc="abc1"> -->
         <mk-tree :data="treeList" :load="load"></mk-tree>
-        
+        <mk-matte>
+            <div  class="pos-bottom">
+                <mk-area></mk-area>
+            </div>
+        </mk-matte>
     </div>
 </template>
 
@@ -41,6 +45,8 @@
     import mkLayoutCol from '../layout/col.vue'
     import mkCalendar from '../calendar/index.vue'
     import mkTree from '../tree/index.vue'
+    import mkArea from '../area/index.vue'
+    import mkMatte from '../matte/index.vue'
     export default {
         data() {
             return {
@@ -92,7 +98,9 @@
             mkLayoutRow,
             mkLayoutCol,
             mkCalendar,
-            mkTree
+            mkTree,
+            mkArea,
+            mkMatte,
         },
         watch: {
             checkbox(val) {
@@ -130,6 +138,11 @@
     .grid-content {
         border-radius: 4px;
         min-height: 36px;
+    }
+    .pos-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
     }
 </style>
 <style lang="postcss" scoped>

@@ -32,6 +32,18 @@ export default {
             return `background-color: ${color}`
         }
     },
+    watch: {
+        isShow(val) {
+            if (val) {
+                document.body.addEventListener('scroll',  this.fn = e => {
+                    e.preventDefault()
+                    return false
+                })
+            } else {
+                 document.body.removeEventListener(this.fn)
+            }
+        }
+    },
     mounted() {
         this.$on('hide', this.hide)
     }
