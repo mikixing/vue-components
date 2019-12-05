@@ -8,9 +8,8 @@
       <div class="miki-area-bar"></div>
       <div class="miki-area-wrap">
         <div class="miki-area-inner" ref="mikiAreaInner" >
-          <div class="miki-area-list" ref="mikiAreaList" @touchstart.stop.prevent="touchstart($event)" @touchmove.stop.prevent="touchmove($event)" @touchend.stop.prevent="touchend($event)">
-            <div class="miki-area-column" v-for="(item, i) in areaList" :key="i" onselectstart="return false" oncontextmenu="return false">{{item.label}}</div>
-          </div>
+          <list :areaList="areaList"></list>
+          <list :areaList="areaList"></list>
           <div class="miki-area-mask"></div>
         </div>
       </div>
@@ -18,6 +17,7 @@
   </div>
 </template>
 <script>
+  import list from './list.vue'
   const DAFAULT_COLUMN = [{
     label: 1
   }, {
@@ -43,65 +43,12 @@
     },
     data() {
       return {
-        startY: 0,
-        mouseStartY: 0,
-        dy: 0,
-        baseHeiht: 0
       }
     },
-    methods: {
-      touchstart(e) {
-        this.rmTransition(this.$refs.mikiAreaList)
-        this.mouseStartY = e.touches[0].clientY
-        this.startY = parseInt(getComputedStyle(this.$refs.mikiAreaList).top)
-      },
-      touchmove(e) {
-        this.rmTransition(this.$refs.mikiAreaList)
-        let y = e.touches[0].clientY - this.mouseStartY
-        let ele = this.$refs.mikiAreaList
-        let dy = this.startY + y
-        let height = parseInt(getComputedStyle(this.$refs.mikiAreaList).height)
-        if (dy > 0) {
-          dy = dy > 90 ? 90 : dy
-        } else {
-          dy = dy < -(height - 60) ? -(height - 60) : dy
-        }
-        ele.style.top = dy + 'px'
-      },
-      touchend(e) {
-        let ele = this.$refs.mikiAreaList
-        ele.style.transitionDuration = '0.3s'
-        ele.style.transitionProperty = 'top'
-        ele.style.transitionTimingFunction = 'ease-in-out'
-        let top = parseInt(getComputedStyle(this.$refs.mikiAreaList).top)
-        let height = parseInt(getComputedStyle(this.$refs.mikiAreaList).height)
-        let res
-        const r = top % this.baseHeight
-        if ((r > 0 && r > this.baseHeight / 3) || (r < 0 && r < -this.baseHeight / 3)) {
-          res = r > 0 ? top - r + this.baseHeight : top - r - this.baseHeight
-        } else {
-          res = r > 0 ? top - r : top - r + this.baseHeiht
-        }
-        // 对极限值处理
-        if (res === 90) {
-          res = 60
-        }
-        if (res === -(height - 60)) {
-          res = -(height - 90)
-        }
-        ele.style.top = res + 'px'
-        ele.addEventListener('transitionend', _ => {
-          this.rmTransition(ele)
-        });
-      },
-      rmTransition(ele) {
-        ele.style.transitionDuration = ''
-        ele.style.transitionProperty = ''
-        ele.style.transitionTimingFunction = ''
-      },
+    components: {
+      list
     },
-    mounted() {
-      this.baseHeight = parseInt(getComputedStyle(this.$refs.mikiAreaList).height) / this.areaList.length
+    methods: {
     },
   }
 </script>
@@ -152,16 +99,12 @@
     position: relative;
   }
   .miki-area-inner {
-    position: absolute;
     height: 150px;
-    width: 100%;
+    display: flex;
   }
   .miki-area-list{
-    position: absolute;
-    top: 60px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    transform: translate3d(0, 60px, 0);
+    flex: 1;
   }
   .miki-area-mask {
     position: absolute;
