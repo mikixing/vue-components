@@ -27,12 +27,21 @@
             <mk-calendar v-model="calendar"></mk-calendar>
         </div> -->
         <!-- <input type="checkbox" value="haha" checked="" abc="abc1"> -->
-        <mk-tree :data="treeList" :load="load"></mk-tree>
-        <mk-matte>
+        <!-- <mk-tree :data="treeList" :load="load"></mk-tree> -->
+        <!-- <mk-matte>
             <div  class="pos-bottom">
                 <mk-area></mk-area>
             </div>
-        </mk-matte>
+        </mk-matte> -->
+        <!-- <van-area :area-list="areaList" /> -->
+        <!-- <div>111</div>> -->
+        <div class="mk-container-wrap">
+            <mk-container direction="vertical">
+                <mk-header class="mk-header-wrap"></mk-header>
+                <mk-main class="mk-main-wrap"></mk-main>
+                <mk-footer class="mk-footer-wrap"></mk-footer>
+            </mk-container>
+        </div>
     </div>
 </template>
 
@@ -47,6 +56,10 @@
     import mkTree from '../tree/index.vue'
     import mkArea from '../area/index.vue'
     import mkMatte from '../matte/index.vue'
+    import mkContainer from '../container/index.vue'
+    import mkHeader from '../container/header.vue'
+    import mkMain from '../container/main.vue'
+    import mkFooter from '../container/footer.vue'
     export default {
         data() {
             return {
@@ -67,7 +80,31 @@
                             label: '三级'
                         }]
                     }]
-                }]
+                }],
+                areaList: {
+                    province_list: {
+                        110000: '北京市',
+                        120000: '天津市'
+                    },
+                    city_list: {
+                        110100: '北京市',
+                        110200: '县',
+                        120100: '天津市',
+                        120200: '县'
+                    },
+                    county_list: {
+                        110101: '东城区',
+                        110102: '西城区',
+                        110105: '朝阳区',
+                        110106: '丰台区',
+                        120101: '和平区',
+                        120102: '河东区',
+                        120103: '河西区',
+                        120104: '南开区',
+                        120105: '河北区',
+                        // ....
+                    }
+                }
             }
         },
         methods: {
@@ -101,6 +138,10 @@
             mkTree,
             mkArea,
             mkMatte,
+            mkContainer,
+            mkHeader,
+            mkMain,
+            mkFooter,
         },
         watch: {
             checkbox(val) {
@@ -124,6 +165,19 @@
 
 
 <style>
+    .mk-container-wrap {
+        width: 500px;
+        height: 300px;
+    }
+    .mk-header-wrap {
+        background: #b3c0d1;
+    }
+    .mk-main-wrap {
+        background: #e9eef3;
+    }
+    .mk-footer-wrap {
+        background: #b3c0d1;
+    }
     .wrap {
         width: 100px;
         height: 200px;

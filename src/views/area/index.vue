@@ -8,8 +8,9 @@
       <div class="miki-area-bar"></div>
       <div class="miki-area-wrap">
         <div class="miki-area-inner" ref="mikiAreaInner" >
-          <list :areaList="areaList"></list>
-          <list :areaList="areaList"></list>
+          <list :areaObj="areaObj"></list>
+          <list :areaObj="areaObj"></list>
+          <list :areaObj="areaObj"></list>
           <div class="miki-area-mask"></div>
         </div>
       </div>
@@ -18,26 +19,13 @@
 </template>
 <script>
   import list from './list.vue'
-  const DAFAULT_COLUMN = [{
-    label: 1
-  }, {
-    label: 2
-  }, {
-    label: 3
-  }, {
-    label: 4
-  }, {
-    label: 5
-  }, {
-    label: 6
-  }, {
-    label: 7
-  }]
+  import areaJson from './location.js'
+  const DAFAULT_COLUMN = areaJson.province_list
   export default {
     name: 'miki-area',
     props: {
-      areaList: {
-        type: Array,
+      areaObj: {
+        type: Object,
         default: _ => DAFAULT_COLUMN
       }
     },
@@ -99,7 +87,6 @@
     position: relative;
   }
   .miki-area-inner {
-    height: 150px;
     display: flex;
   }
   .miki-area-list{

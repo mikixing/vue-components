@@ -1,15 +1,15 @@
 <template>
-    <div class="miki-area-list" ref="mikiAreaList" @touchstart.stop.prevent="touchstart($event)" @touchmove.stop.prevent="touchmove($event)" @touchend.stop.prevent="touchend($event)">
-        <div class="miki-area-column" v-for="(item, i) in areaList" :key="i" onselectstart="return false" oncontextmenu="return false">{{item.label}}</div>
+    <div class="miki-area-list" ref="mikiAreaObj" @touchstart.stop.prevent="touchstart($event)" @touchmove.stop.prevent="touchmove($event)" @touchend.stop.prevent="touchend($event)">
+        <div class="miki-area-column" v-for="(item, key) in areaObj" :key="item" onselectstart="return false" oncontextmenu="return false">{{item}}</div>
     </div>
 </template>
 <script>
     export default {
         name: 'list',
         props: {
-            areaList: {
-                type: Array,
-                default: _ => []
+            areaObj: {
+                type: Object,
+                default: _ => {}
             }
         },
         data() {
@@ -24,13 +24,14 @@
         },
         methods: {
             touchstart(e) {
-                this.rmTransition(this.$refs.mikiAreaList)
+                this.rmTransition(this.$refs.mikiAreaObj)
                 this.mouseStartY = e.touches[0].clientY
+                console.log('start')
             },
             touchmove(e) {
-                this.rmTransition(this.$refs.mikiAreaList)
+                this.rmTransition(this.$refs.mikiAreaObj)
                 let y = e.touches[0].clientY - this.mouseStartY
-                let ele = this.$refs.mikiAreaList
+                let ele = this.$refs.mikiAreaObj
                 this.dy = this.startY + y
                 let height = this.listHeight
                 if (this.dy > 0) {
@@ -41,7 +42,7 @@
                 ele.style.transform= `translate3d(0, ${this.dy}px, 0)`
             },
             touchend(e) {
-                let ele = this.$refs.mikiAreaList
+                let ele = this.$refs.mikiAreaObj
                 ele.style.transitionDuration = '0.3s'
                 ele.style.transitionProperty = 'all'
                 ele.style.transitionTimingFunction = 'ease-in-out'
@@ -52,7 +53,7 @@
                 if ((r > 0 && r > this.baseHeight / 3) || (r < 0 && r < -this.baseHeight / 3)) {
                     res = r > 0 ? top - r + this.baseHeight : top - r - this.baseHeight
                 } else {
-                    res = r >= 0 ? top - r : top - r + this.baseHeight
+                    res = r >= 0 ? top - r : top - r
                 }
                 // 对极限值处理
                 if (res === (this.fixY + this.baseHeight)) {
@@ -74,8 +75,8 @@
             },
         },
         mounted() {
-            this.listHeight = parseInt(getComputedStyle(this.$refs.mikiAreaList).height)
-            this.baseHeight =  this.listHeight / this.areaList.length
+            this.listHeight = parseInt(getComputedStyle(this.$refs.mikiAreaObj).height)
+            this.baseHeight =  this.listHeight / Object.keys(this.areaObj).length
             this.startY = this.fixY = 2 * this.baseHeight
         },
     }

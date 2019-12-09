@@ -103,6 +103,16 @@ export default new Router({
         component: () => import(/* webpackChunkName: "area" */ '../views/area/index.vue'),
     },
     {
+        path: '/container',
+        name: 'container',
+        meta: {
+            title: 'vue组件库',
+            requiresAuth: false,
+            isSaveScroll: false,
+        },
+        component: () => import(/* webpackChunkName: "container" */ '../views/container/index.vue'),
+    },
+    {
         path: '/',
         redirect: '/home',
         meta: {}, // TODO: haha
